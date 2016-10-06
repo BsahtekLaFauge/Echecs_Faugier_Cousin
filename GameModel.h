@@ -11,7 +11,9 @@ private:
     Echiquier* m_Echiquier;
 public:
     GameModel();
-
+    Echiquier* getEchiquier();
+    JoueurBlanc* getJoueurBlanc();
+    JoueurNoir* getJoueurNoir();
 };
 
 #endif // GAMEMODEL_H

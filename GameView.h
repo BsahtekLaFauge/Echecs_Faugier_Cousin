@@ -7,6 +7,7 @@ class GameView
     GameModel* m_gameModel;
 public:
     GameView();
+    void affiche() const;
 };
 
 #endif // GAMEVIEW_H
