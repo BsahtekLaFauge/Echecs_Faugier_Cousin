@@ -32,7 +32,7 @@ public:
   int y() const;
   bool isWhite() const;
   bool isBlack() const;
-  void affiche() const;
+  virtual void affiche() const;
   const Piece & plusforte(const Piece & autre) const;
   virtual bool mouvementValide(Echiquier & e, int x, int y );
   virtual char myChar();
@@ -44,6 +44,7 @@ class Roi : public Piece
   Roi(bool white);
   bool mouvementValide(Echiquier & e, int x, int y );
   char myChar();
+  void affiche() const;
   void roque(bool left);
 };
 
@@ -53,6 +54,7 @@ class Tour : virtual public Piece
   Tour(bool white, bool left);
   bool mouvementValide(Echiquier & e, int x, int y );
   char myChar();
+  void affiche() const;
 };
 
 class Fou : virtual public Piece
@@ -61,6 +63,7 @@ class Fou : virtual public Piece
   Fou(bool white, bool left);
   bool mouvementValide(Echiquier & e, int x, int y );
   char myChar();
+  void affiche() const;
 };
 
 class Cavalier : public Piece
@@ -69,6 +72,7 @@ class Cavalier : public Piece
   Cavalier(bool white, bool left);
   bool mouvementValide(Echiquier & e, int x, int y );
   char myChar();
+  void affiche() const;
 };
 
 class Pion : public Piece
@@ -77,6 +81,7 @@ class Pion : public Piece
   Pion(bool white, int p);
   bool mouvementValide(Echiquier & e, int x, int y );
   char myChar();
+  void affiche() const;
 };
 
 class Reine : public Fou, public Tour
@@ -85,6 +90,7 @@ class Reine : public Fou, public Tour
   Reine(bool white);
   bool mouvementValide(Echiquier & e, int x, int y );
   char myChar();
+  void affiche() const;
 };
 
 

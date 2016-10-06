@@ -16,7 +16,6 @@ using namespace std;
 class Joueur { // non instanciable -> classe abstraite
  protected:
   vector<Piece*> m_pieces;
-  //Piece m_pieces[16];
 
  public:
   Joueur();

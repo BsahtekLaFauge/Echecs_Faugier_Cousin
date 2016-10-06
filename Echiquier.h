@@ -18,7 +18,8 @@ private:
   /**
    * Les cases de l'echiquier
    */
-  Piece* m_cases[ 64 ];
+  Piece* m_cases[64];
+  bool m_white;
 
 public:
 

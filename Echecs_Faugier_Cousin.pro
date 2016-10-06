@@ -19,9 +19,13 @@ SOURCES += \
     Piece.cxx \
     Joueur.cxx \
     Echiquier.cxx \
-    testPiece.cxx
+    testPiece.cxx \
+    GameModel.cxx \
+    GameView.cxx
 
 HEADERS += \
     Piece.h \
     Joueur.h \
-    Echiquier.h
+    Echiquier.h \
+    GameModel.h \
+    GameView.h

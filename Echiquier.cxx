@@ -79,8 +79,6 @@ Echiquier::deplacer( Piece* p, int x, int y )
 {
 
 }
-
-
 /**
  * Enleve la piece situee sur une case (qui devient vide).
  *

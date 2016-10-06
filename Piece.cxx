@@ -120,13 +120,6 @@ Piece::isBlack() const
   return !m_white;
 }
 
-void
-Piece::affiche() const
-{
-  cout << "Piece: x=" << m_x << " y=" << m_y << " "
-       << ( m_white ? "blanche" : "noire" ) << endl;
-}
-
 const Piece &
 Piece::plusforte(const Piece & autre) const
 {
@@ -157,6 +150,11 @@ Piece::myChar()
   return m_white?'B':'N';
 }
 
+void
+Piece::affiche() const{
+
+}
+
 bool
 Roi::mouvementValide(Echiquier & e, int x, int y)
 {
@@ -168,6 +166,13 @@ char
 Roi::myChar()
 {
   return m_white?'R':'r';
+}
+
+void
+Roi::affiche() const
+{
+  cout << "Roi: x=" << m_x << " y=" << m_y << " "
+       << ( m_white ? "blanc" : "noir" ) << endl;
 }
 
 bool
@@ -183,6 +188,13 @@ Tour::myChar()
   return m_white?'T':'t';
 }
 
+void
+Tour::affiche() const
+{
+  cout << "Tour: x=" << m_x << " y=" << m_y << " "
+       << ( m_white ? "blanche" : "noire" ) << endl;
+}
+
 bool
 Fou::mouvementValide(Echiquier & e, int x, int y)
 {
@@ -194,6 +206,13 @@ char
 Fou::myChar()
 {
   return m_white?'F':'f';
+}
+
+void
+Fou::affiche() const
+{
+  cout << "Fou: x=" << m_x << " y=" << m_y << " "
+       << ( m_white ? "blanc" : "noir" ) << endl;
 }
 
 bool
@@ -209,6 +228,13 @@ Cavalier::myChar()
   return m_white?'C':'c';
 }
 
+void
+Cavalier::affiche() const
+{
+  cout << "Cavalier: x=" << m_x << " y=" << m_y << " "
+       << ( m_white ? "blanc" : "noir" ) << endl;
+}
+
 bool
 Pion::mouvementValide(Echiquier & e, int x, int y)
 {
@@ -220,6 +246,13 @@ char
 Pion::myChar()
 {
   return m_white?'P':'p';
+}
+
+void
+Pion::affiche() const
+{
+  cout << "Pion: x=" << m_x << " y=" << m_y << " "
+       << ( m_white ? "blanc" : "noir" ) << endl;
 }
 
 
@@ -240,4 +273,11 @@ char
 Reine::myChar()
 {
   return m_white?'Q':'q';
+}
+
+void
+Reine::affiche() const
+{
+  cout << "Reine: x=" << m_x << " y=" << m_y << " "
+       << ( m_white ? "blanche" : "noire" ) << endl;
 }
