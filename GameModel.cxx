@@ -7,6 +7,8 @@ GameModel::GameModel()
     m_jBlack = new JoueurNoir();
     m_jBlack->placerPieces(*m_Echiquier);
     m_jWhite->placerPieces(*m_Echiquier);
+    m_echecEtMat = false;
+    m_white = true;
 }
 
 Echiquier* GameModel::getEchiquier() {
@@ -19,4 +21,12 @@ JoueurBlanc* GameModel::getJoueurBlanc() {
 
 JoueurNoir* GameModel::getJoueurNoir() {
     return m_jBlack;
+}
+
+bool GameModel::getEchecEtMat() const {
+    return m_echecEtMat;
+}
+
+bool GameModel::isWhite() const {
+    return m_white;
 }

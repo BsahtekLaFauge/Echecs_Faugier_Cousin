@@ -19,9 +19,10 @@ using namespace std;
 int main( int argc, char** argv )
 {
   GameView* gV = new GameView();
-
+  Piece* p;
   gV->affiche();
-
-  // les objets definis dans cette fonction sont automatiquement détruits.
-  // Ex : p1
+  while (!gV->getGameModel()->getEchecEtMat()) {
+        p = gV->choisirPiece();
+        p->affiche();
+  }
 }
