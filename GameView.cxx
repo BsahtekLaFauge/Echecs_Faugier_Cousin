@@ -40,6 +40,23 @@ Piece* GameView::choisirPiece() const {
     return p;
 }
 
-void GameView::choisirPlacement() {
-
+void GameView::choisirPlacement(Piece *p) {
+    int x;
+    int y;
+    bool ok = false;
+    while (!ok) {
+        cout << "Destination x : ";
+        cin >> x;
+        cout << endl;
+        cout << "Destination y : ";
+        cin >> y;
+        cout << endl;
+        if (p->mouvementValide(m_gameModel->getEchiquier(),x,y)) {
+            m_gameModel->getEchiquier()->deplacer(p,x,y);
+            ok = true;
+        }
+        else {
+            cout <<"Destination invalide"<<endl;
+        }
+    }
 }

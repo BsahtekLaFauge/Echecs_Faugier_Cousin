@@ -24,5 +24,7 @@ int main( int argc, char** argv )
   while (!gV->getGameModel()->getEchecEtMat()) {
         p = gV->choisirPiece();
         p->affiche();
+        gV->choisirPlacement(p);
+        gV->affiche();
   }
 }

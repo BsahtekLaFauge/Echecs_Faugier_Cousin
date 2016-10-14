@@ -8,7 +8,7 @@
 #define Echiquier_h
 
 #include "Piece.h"
-
+class Piece;
 /**
  * Declaration d'une classe modélisant une piece de jeu d'echec.
  */

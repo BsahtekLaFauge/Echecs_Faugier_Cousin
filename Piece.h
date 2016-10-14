@@ -7,90 +7,92 @@
 #if !defined Piece_h
 #define Piece_h
 
-//#include "Echiquier.h" pb de reference croisee
+#include "Echiquier.h" //pb de reference croisee
 class Echiquier;
-
 /**
  * Declaration d'une classe modélisant une piece de jeu d'echec.
  */
 class Piece
 {
 protected:
-  int m_x;
-  int m_y;
-  bool m_white;
+    int m_x;
+    int m_y;
+    bool m_white;
 
 public:
-  Piece();
-  virtual ~Piece();
-  Piece( int x, int y, bool white );
-  Piece(const Piece & autre);
-  Piece & operator=(const Piece & autre);
-  void init( int x, int y, bool white );
-  void move( int x, int y );
-  int x() const;
-  int y() const;
-  bool isWhite() const;
-  bool isBlack() const;
-  virtual void affiche() const;
-  const Piece & plusforte(const Piece & autre) const;
-  virtual bool mouvementValide(Echiquier & e, int x, int y );
-  virtual char myChar();
+    Piece();
+    virtual ~Piece();
+    Piece( int x, int y, bool white );
+    Piece(const Piece & autre);
+    Piece & operator=(const Piece & autre);
+    void init( int x, int y, bool white );
+    void move( int x, int y );
+    int x() const;
+    int y() const;
+    bool isWhite() const;
+    bool isBlack() const;
+    virtual void affiche() const;
+    const Piece & plusforte(const Piece & autre) const;
+    virtual bool mouvementValide(Echiquier* e, int x, int y );
+    virtual char myChar();
 };
 
 class Roi : public Piece
 {
- public:
-  Roi(bool white);
-  bool mouvementValide(Echiquier & e, int x, int y );
-  char myChar();
-  void affiche() const;
-  void roque(bool left);
+public:
+    Roi(bool white);
+    bool mouvementValide(Echiquier* e, int x, int y );
+    char myChar();
+    void affiche() const;
+    void roque(bool left);
 };
 
 class Tour : virtual public Piece
 {
- public:
-  Tour(bool white, bool left);
-  bool mouvementValide(Echiquier & e, int x, int y );
-  char myChar();
-  void affiche() const;
+public:
+    Tour(bool white, bool left);
+    bool mouvementValide(Echiquier* e, int x, int y );
+    char myChar();
+    void affiche() const;
 };
 
 class Fou : virtual public Piece
 {
- public:
-  Fou(bool white, bool left);
-  bool mouvementValide(Echiquier & e, int x, int y );
-  char myChar();
-  void affiche() const;
+public:
+    Fou(bool white, bool left);
+    bool mouvementValide(Echiquier* e, int x, int y );
+    char myChar();
+    void affiche() const;
 };
 
 class Cavalier : public Piece
 {
- public:
-  Cavalier(bool white, bool left);
-  bool mouvementValide(Echiquier & e, int x, int y );
-  char myChar();
-  void affiche() const;
+public:
+    Cavalier(bool white, bool left);
+    bool mouvementValide(Echiquier* e, int x, int y );
+    char myChar();
+    void affiche() const;
 };
 
 class Pion : public Piece
 {
- public:
-  Pion(bool white, int p);
-  bool mouvementValide(Echiquier & e, int x, int y );
-  char myChar();
-  void affiche() const;
+private:
+    bool m_moved;
+public:
+    Pion(bool white, int p);
+    bool mouvementValide(Echiquier* e, int x, int y );
+    char myChar();
+    void affiche() const;
+    bool hasMoved() const;
 };
 
 class Reine : public Fou, public Tour
 {
- public:
-  Reine(bool white);
-  bool mouvementValide(Echiquier & e, int x, int y );
-  char myChar();
-  void affiche() const;
+public:
+    Reine(bool white);
+    bool mouvementValide(Echiquier* e, int x, int y );
+    char myChar();
+    void affiche() const;
 };
 
 

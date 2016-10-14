@@ -7,6 +7,7 @@
 // A besoin de la declaration de la classe
 #include <iostream>
 #include "Piece.h"
+#include <cassert>
 
 using namespace std;
 
@@ -51,6 +52,7 @@ Cavalier::Cavalier( bool white, bool left ) : Piece((left)?2:7,(white)?1:8,white
 
 Pion::Pion( bool white, int p ) : Piece(p,(white)?2:7,white)
 {
+  m_moved = false;
   cout << "Construction Pion specialisee" << endl;
 }
 
@@ -115,30 +117,7 @@ Piece::isWhite() const
 }
 
 bool
-Piece::isBlack() const
-{
-  return !m_white;
-}
-
-const Piece &
-Piece::plusforte(const Piece & autre) const
-{
-  /* FAUX !!!
-  Piece tmp;
-  if (true)
-    tmp=autre;
-  else
-    tmp=*this;
-  return tmp;
-  */
-  if (true)
-    return autre;
-  else
-    return *this;
-}
-
-bool
-Piece::mouvementValide(Echiquier & e, int x, int y)
+Piece::mouvementValide(Echiquier* e, int x, int y)
 {
   cout << "mouvementValide de Piece" << endl;
   return false;
@@ -156,7 +135,7 @@ Piece::affiche() const{
 }
 
 bool
-Roi::mouvementValide(Echiquier & e, int x, int y)
+Roi::mouvementValide(Echiquier* e, int x, int y)
 {
   cout << "mouvementValide de Roi" << endl;
   return false;
@@ -176,7 +155,7 @@ Roi::affiche() const
 }
 
 bool
-Tour::mouvementValide(Echiquier & e, int x, int y)
+Tour::mouvementValide(Echiquier* e, int x, int y)
 {
   cout << "mouvementValide de Tour" << endl;
   return false;
@@ -196,7 +175,7 @@ Tour::affiche() const
 }
 
 bool
-Fou::mouvementValide(Echiquier & e, int x, int y)
+Fou::mouvementValide(Echiquier* e, int x, int y)
 {
   cout << "mouvementValide de Fou" << endl;
   return false;
@@ -216,7 +195,7 @@ Fou::affiche() const
 }
 
 bool
-Cavalier::mouvementValide(Echiquier & e, int x, int y)
+Cavalier::mouvementValide(Echiquier* e, int x, int y)
 {
   cout << "mouvementValide de Cavalier" << endl;
   return false;
@@ -236,10 +215,35 @@ Cavalier::affiche() const
 }
 
 bool
-Pion::mouvementValide(Echiquier & e, int x, int y)
+Pion::mouvementValide(Echiquier* e, int x, int y)
 {
-  cout << "mouvementValide de Pion" << endl;
-  return false;
+    bool canMove = false;
+    assert(x<9 && x>0 && y<9 && y>0);
+    if (m_white) {
+        if (x == m_x && y == m_y+2){
+            if (!m_moved && e->getPiece(x,y) == NULL && e->getPiece(x,y-1) == NULL) {
+                canMove = true;
+            }
+        }
+        if (x == m_x && y == m_y+1){
+            if (e->getPiece(x,y) == NULL) {
+                canMove = true;
+            }
+        }
+        if (x == m_x+1 && y == m_y+1){
+            if (e->getPiece(x,y) != NULL && !e->getPiece(x,y)->isWhite()) {
+                canMove = true;
+            }
+        }
+        if (x == m_x-1 && y == m_y+1){
+            if (e->getPiece(x,y) != NULL && !e->getPiece(x,y)->isWhite()) {
+                canMove = true;
+            }
+        }
+    }
+    if (canMove && !m_moved)
+        m_moved = true;
+  return canMove;
 }
 
 char
@@ -255,6 +259,10 @@ Pion::affiche() const
        << ( m_white ? "blanc" : "noir" ) << endl;
 }
 
+bool
+Pion::hasMoved() const {
+    return m_moved;
+}
 
 void
 Roi::roque(bool left)
@@ -263,7 +271,7 @@ Roi::roque(bool left)
 }
 
 bool
-Reine::mouvementValide(Echiquier & e, int x, int y)
+Reine::mouvementValide(Echiquier* e, int x, int y)
 {
   cout << "mouvementValide de Reine" << endl;
   return Fou::mouvementValide(e,x,y) || Tour::mouvementValide(e,x,y);

@@ -10,7 +10,7 @@ public:
     void affiche() const;
     GameModel* getGameModel() const;
     Piece* choisirPiece() const;
-    void choisirPlacement();
+    void choisirPlacement(Piece *p);
 };
 
 #endif // GAMEVIEW_H
