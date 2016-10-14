@@ -30,3 +30,7 @@ bool GameModel::getEchecEtMat() const {
 bool GameModel::isWhite() const {
     return m_white;
 }
+
+void GameModel::changerJoueur() {
+    m_white = !m_white;
+}

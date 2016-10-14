@@ -11,6 +11,7 @@ public:
     GameModel* getGameModel() const;
     Piece* choisirPiece() const;
     void choisirPlacement(Piece *p);
+    void changerJoueur();
 };
 
 #endif // GAMEVIEW_H

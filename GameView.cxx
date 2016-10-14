@@ -60,3 +60,7 @@ void GameView::choisirPlacement(Piece *p) {
         }
     }
 }
+
+void GameView::changerJoueur() {
+    m_gameModel->changerJoueur();
+}

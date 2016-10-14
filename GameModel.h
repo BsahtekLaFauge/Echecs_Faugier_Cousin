@@ -18,6 +18,7 @@ public:
     JoueurNoir* getJoueurNoir();
     bool getEchecEtMat() const;
     bool isWhite() const;
+    void changerJoueur();
 };
 
 #endif // GAMEMODEL_H

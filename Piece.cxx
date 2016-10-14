@@ -241,6 +241,28 @@ Pion::mouvementValide(Echiquier* e, int x, int y)
             }
         }
     }
+    else {
+        if (x == m_x && y == m_y-2){
+            if (!m_moved && e->getPiece(x,y) == NULL && e->getPiece(x,y-1) == NULL) {
+                canMove = true;
+            }
+        }
+        if (x == m_x && y == m_y-1){
+            if (e->getPiece(x,y) == NULL) {
+                canMove = true;
+            }
+        }
+        if (x == m_x+1 && y == m_y-1){
+            if (e->getPiece(x,y) != NULL && e->getPiece(x,y)->isWhite()) {
+                canMove = true;
+            }
+        }
+        if (x == m_x-1 && y == m_y-1){
+            if (e->getPiece(x,y) != NULL && e->getPiece(x,y)->isWhite()) {
+                canMove = true;
+            }
+        }
+    }
     if (canMove && !m_moved)
         m_moved = true;
   return canMove;

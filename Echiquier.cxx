@@ -78,6 +78,7 @@ bool
 Echiquier::deplacer( Piece* p, int x, int y )
 {
     enleverPiece(p->x(),p->y());
+    enleverPiece(x,y);
     p->move(x,y);
     placer(p);
 }

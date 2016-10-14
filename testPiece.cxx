@@ -26,5 +26,6 @@ int main( int argc, char** argv )
         p->affiche();
         gV->choisirPlacement(p);
         gV->affiche();
+        gV->changerJoueur();
   }
 }
