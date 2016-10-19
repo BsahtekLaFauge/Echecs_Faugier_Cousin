@@ -11,6 +11,7 @@ private:
     Echiquier* m_Echiquier;
     bool m_echecEtMat;
     bool m_white;
+    bool m_played;
 public:
     GameModel();
     Echiquier* getEchiquier();
@@ -18,7 +19,10 @@ public:
     JoueurNoir* getJoueurNoir();
     bool getEchecEtMat() const;
     bool isWhite() const;
+    void played();
     void changerJoueur();
+    Piece* testerCoordonnees(int x,int y) const;
+    void choisirPlacement(Piece* p,int x,int y);
 };
 
 #endif // GAMEMODEL_H

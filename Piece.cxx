@@ -8,6 +8,7 @@
 #include <iostream>
 #include "Piece.h"
 #include <cassert>
+#include <cmath>
 
 using namespace std;
 
@@ -199,45 +200,9 @@ Cavalier::mouvementValide(Echiquier* e, int x, int y)
 {
     bool canMove = false;
     assert(x<9 && x>0 && y<9 && y>0);
-    if (x == m_x+1 && y == m_y+2){
-        if (e->getPiece(x,y) == NULL || e->getPiece(x,y)->isWhite() == m_white) {
+    if ( abs(m_x-x) < 3 && abs(m_y-y) < 3 && abs(m_x-x)+abs(m_y-y) == 3) {
+        if (e->getPiece(x,y) == NULL || e->getPiece(x,y)->isWhite() != m_white)
             canMove = true;
-        }
-    }
-    if (x == m_x+1 && y == m_y-2){
-        if (e->getPiece(x,y) == NULL || e->getPiece(x,y)->isWhite() == m_white) {
-            canMove = true;
-        }
-    }
-    if (x == m_x+2 && y == m_y+1){
-        if (e->getPiece(x,y) == NULL || e->getPiece(x,y)->isWhite() != m_white) {
-            canMove = true;
-        }
-    }
-    if (x == m_x+2 && y == m_y-1){
-        if (e->getPiece(x,y) == NULL || e->getPiece(x,y)->isWhite() != m_white) {
-            canMove = true;
-        }
-    }
-    if (x == m_x-1 && y == m_y+2){
-        if (e->getPiece(x,y) == NULL || e->getPiece(x,y)->isWhite() != m_white) {
-            canMove = true;
-        }
-    }
-    if (x == m_x-1 && y == m_y-2){
-        if (e->getPiece(x,y) == NULL || e->getPiece(x,y)->isWhite() != m_white) {
-            canMove = true;
-        }
-    }
-    if (x == m_x-2 && y == m_y+1){
-        if (e->getPiece(x,y) == NULL || e->getPiece(x,y)->isWhite() != m_white) {
-            canMove = true;
-        }
-    }
-    if (x == m_x-2 && y == m_y-1){
-        if (e->getPiece(x,y) == NULL || e->getPiece(x,y)->isWhite() != m_white) {
-            canMove = true;
-        }
     }
     return canMove;
 }
