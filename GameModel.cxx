@@ -36,8 +36,10 @@ bool GameModel::isWhite() const {
 }
 
 void GameModel::changerJoueur() {
-    if (m_played)
+    if (m_played) {
         m_white = !m_white;
+        played();
+    }
 }
 
 void GameModel::played() {
@@ -60,7 +62,7 @@ void GameModel::choisirPlacement(Piece *p,int x,int y) {
     assert(x<9 && x>0 && y<9 && y>0);
     if (p->mouvementValide(m_Echiquier,x,y)) {
         m_Echiquier->deplacer(p,x,y);
-        m_played = true;
+        played();
     }
     else
         cout <<"Destination invalide"<<endl;

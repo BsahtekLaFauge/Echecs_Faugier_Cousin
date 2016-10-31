@@ -158,8 +158,47 @@ Roi::affiche() const
 bool
 Tour::mouvementValide(Echiquier* e, int x, int y)
 {
-  cout << "mouvementValide de Tour" << endl;
-  return false;
+    bool canMove = false;
+    assert(x<9 && x>0 && y<9 && y>0);
+    if (e->getPiece(x,y) == NULL || e->getPiece(x,y)->isWhite() != m_white) {
+        if (m_x == x && m_y != y) {
+            int i = m_y;
+            canMove = true;
+            if (m_y < y) {
+                while (i+1 < y && canMove) {
+                    i ++;
+                    if (e->getPiece(x,i) != NULL)
+                        canMove = false;
+                }
+            }
+            else {
+                while (i-1 > y && canMove) {
+                    i --;
+                    if (e->getPiece(x,i) != NULL)
+                        canMove = false;
+                }
+            }
+        }
+        if (m_y == y && m_x != x) {
+            int i = m_x;
+            canMove = true;
+            if (m_x < x) {
+                while (i+1 < x && canMove) {
+                    i ++;
+                    if (e->getPiece(i,y) != NULL)
+                        canMove = false;
+                }
+            }
+            else {
+                while (i-1 > x && canMove) {
+                    i --;
+                    if (e->getPiece(i,y) != NULL)
+                        canMove = false;
+                }
+            }
+        }
+    }
+    return canMove;
 }
 
 char
@@ -249,7 +288,7 @@ Pion::mouvementValide(Echiquier* e, int x, int y)
     }
     else {
         if (x == m_x && y == m_y-2){
-            if (!m_moved && e->getPiece(x,y) == NULL && e->getPiece(x,y-1) == NULL) {
+            if (!m_moved && e->getPiece(x,y) == NULL && e->getPiece(x,y+1) == NULL) {
                 canMove = true;
             }
         }

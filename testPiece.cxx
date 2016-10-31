@@ -20,12 +20,11 @@ int main( int argc, char** argv )
 {
   GameView* gV = new GameView();
   Piece* p;
-  gV->affiche();
   while (!gV->getGameModel()->getEchecEtMat()) {
+        gV->affiche();
         p = gV->choisirPiece();
         p->affiche();
         gV->choisirPlacement(p);
-        gV->affiche();
         gV->changerJoueur();
   }
 }
