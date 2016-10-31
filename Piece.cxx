@@ -160,11 +160,14 @@ Tour::mouvementValide(Echiquier* e, int x, int y)
 {
     bool canMove = false;
     assert(x<9 && x>0 && y<9 && y>0);
+    //On vérifie qu'il n'y ait pas de piece de la même couleur que la piece courante sur la position en paramètre
     if (e->getPiece(x,y) == NULL || e->getPiece(x,y)->isWhite() != m_white) {
+        //On vérifie si la position est sur la même colonne que la piece
         if (m_x == x && m_y != y) {
             int i = m_y;
             canMove = true;
             if (m_y < y) {
+                //On vérifie qu'il n'y a pas de pièces entre la position en paramètres et la position de la piece courante
                 while (i+1 < y && canMove) {
                     i ++;
                     if (e->getPiece(x,i) != NULL)
@@ -172,6 +175,7 @@ Tour::mouvementValide(Echiquier* e, int x, int y)
                 }
             }
             else {
+                //On vérifie qu'il n'y a pas de pièces entre la position en paramètres et la position de la piece courante
                 while (i-1 > y && canMove) {
                     i --;
                     if (e->getPiece(x,i) != NULL)
@@ -179,10 +183,12 @@ Tour::mouvementValide(Echiquier* e, int x, int y)
                 }
             }
         }
+        //On vérifie si la position est sur la même ligne que la piece
         if (m_y == y && m_x != x) {
             int i = m_x;
             canMove = true;
             if (m_x < x) {
+                //On vérifie qu'il n'y a pas de pièces entre la position en paramètres et la position de la piece courante
                 while (i+1 < x && canMove) {
                     i ++;
                     if (e->getPiece(i,y) != NULL)
@@ -190,6 +196,7 @@ Tour::mouvementValide(Echiquier* e, int x, int y)
                 }
             }
             else {
+                //On vérifie qu'il n'y a pas de pièces entre la position en paramètres et la position de la piece courante
                 while (i-1 > x && canMove) {
                     i --;
                     if (e->getPiece(i,y) != NULL)
@@ -217,8 +224,57 @@ Tour::affiche() const
 bool
 Fou::mouvementValide(Echiquier* e, int x, int y)
 {
-  cout << "mouvementValide de Fou" << endl;
-  return false;
+    bool canMove = false;
+    assert(x<9 && x>0 && y<9 && y>0);
+    //On vérifie qu'il n'y ait pas de piece de la même couleur que la piece courante sur la position en paramètre
+    if (e->getPiece(x,y) == NULL || e->getPiece(x,y)->isWhite() != m_white) {
+        //On vérifie si la position est sur la diagonale de la piece
+        if (abs(m_x-x) == abs(m_y-y) && abs(m_x-x) != 0){
+            int i,j;
+            canMove = true;
+            if (m_x < x && m_y < y) {
+                i = m_x+1;
+                j = m_y+1;
+                while (i < x && canMove) {
+                    if (e->getPiece(i,j) != NULL)
+                        canMove = false;
+                    i ++;
+                    j ++;
+                }
+            }
+            else if (m_x > x && m_y < y) {
+                i = m_x-1;
+                j = m_y+1;
+                while (i > x && canMove) {
+                    if (e->getPiece(i,j) != NULL)
+                        canMove = false;
+                    i --;
+                    j ++;
+                }
+            }
+            else if (m_x < x && m_y > y) {
+                i = m_x+1;
+                j = m_y-1;
+                while (i < x && canMove) {
+                    if (e->getPiece(i,j) != NULL)
+                        canMove = false;
+                    i ++;
+                    j --;
+                }
+            }
+            else {
+                i = m_x-1;
+                j = m_y-1;
+                while (i > x && canMove) {
+                    if (e->getPiece(i,j) != NULL)
+                        canMove = false;
+                    i --;
+                    j --;
+                }
+            }
+        }
+    }
+    return canMove;
 }
 
 char
@@ -308,6 +364,7 @@ Pion::mouvementValide(Echiquier* e, int x, int y)
             }
         }
     }
+    //Si le pion a bougé, alors on passe m_moved à true pour l'empêcher d'avancer de 2 cases
     if (canMove && !m_moved)
         m_moved = true;
   return canMove;
