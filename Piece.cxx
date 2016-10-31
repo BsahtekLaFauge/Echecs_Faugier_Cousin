@@ -138,7 +138,9 @@ Piece::affiche() const{
 bool
 Roi::mouvementValide(Echiquier* e, int x, int y)
 {
-  cout << "mouvementValide de Roi" << endl;
+  assert(x<9 && x>0 && y<9 && y>0);
+  if ((e->getPiece(x,y) == NULL || e->getPiece(x,y)->isWhite() != m_white) && abs(m_x-x)<=1 && abs(m_y-y)<=1)
+      return true;
   return false;
 }
 
@@ -229,7 +231,7 @@ Fou::mouvementValide(Echiquier* e, int x, int y)
     //On vérifie qu'il n'y ait pas de piece de la même couleur que la piece courante sur la position en paramètre
     if (e->getPiece(x,y) == NULL || e->getPiece(x,y)->isWhite() != m_white) {
         //On vérifie si la position est sur la diagonale de la piece
-        if (abs(m_x-x) == abs(m_y-y) && abs(m_x-x) != 0){
+        if (abs(m_x-x) == abs(m_y-y)){
             int i,j;
             canMove = true;
             if (m_x < x && m_y < y) {
